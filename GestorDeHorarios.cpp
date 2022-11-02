@@ -11,49 +11,56 @@ GestorDeHorarios::GestorDeHorarios(){
 
 }
 
-void GestorDeHorarios::readFiles() {
+void GestorDeHorarios::readStudents() {
     ifstream inputFile1;
-    ifstream inputFile2;
     inputFile1.open(R"(C:\Users\inviz\Downloads\schedule\students_classes.csv)");
-    inputFile2.open(R"(C:\Users\inviz\Downloads\schedule\classes_per_uc.csv)");
+    //inputFile2.open(R"(C:\Users\inviz\Downloads\schedule\classes_per_uc.csv)");
     //inputFile3.open(R"(C:\Users\inviz\Downloads\schedule\classes.csv)");
-    string line;
+    string line1;
     BST arvore;
-    vector<TurmaHo> turmasHo;
-    while (getline(inputFile1, line)) {
+    //vector<TurmaHo> turmasHo;
+    getline(inputFile1, line1);
+    line1 = "";
+
+    while (getline(inputFile1, line1)) {
         int codEst;
         string nomeEst;
         string codUC;
         string codTurma;
         string temp;
 
-        stringstream inputString(line);
+        stringstream inputString(line1);
 
         getline(inputString, temp, ',');
         codEst = atoi(temp.c_str());
-        cout<<"------------"<<endl<<codEst<<endl;
+        cout << "------------" << endl << codEst << endl;
         getline(inputString, nomeEst, ',');
-        cout<<nomeEst<<endl;
+        cout << nomeEst << endl;
         getline(inputString, codUC, ',');
-        cout<<codUC<<endl;
+        cout << codUC << endl;
         getline(inputString, codTurma, ',');
-        cout<<codTurma<<endl<<"------------"<<endl;
+        cout << codTurma << endl << "------------" << endl;
 
 
-        UCTurma turma(codUC,codTurma);
+        UCTurma turma(codUC, codTurma);
 
-        Student estudante(codEst,nomeEst,turma);
+        Student estudante(codEst, nomeEst, turma);
         arvore.insert(estudante);
-        line = "";
+        line1 = "";
 
     }
-/*
-    while (getline(inputFile2, line)) {
+}
+void GestorDeHorarios::readClassesperUc() {
+    ifstream inputFile1;
+    inputFile1.open(R"(C:\Users\inviz\Downloads\schedule\classes_per_uc.csv)");
+
+    string line2="";
+    while (getline(inputFile1, line2)) {
         string codUC;
         string codTurma;
 
 
-        stringstream inputString(line);
+        stringstream inputString(line2);
 
         getline(inputString, codUC, ',');
         cout<<"------------"<<endl<<codUC<<endl;
@@ -64,11 +71,17 @@ void GestorDeHorarios::readFiles() {
         TurmaHo turmaHo(turma);
         horarios.push_back(turmaHo);
 
-        line = "";
+        line2 = "";
 
     }
-/*
-    while (getline(inputFile3, line)) {
+}
+void GestorDeHorarios::readClasses() {
+    ifstream inputFile1;
+    inputFile1.open(R"(C:\Users\inviz\Downloads\schedule\classes.csv)");
+
+    string line3 = "";
+
+    while (getline(inputFile1, line3)) {
         string diaSemana;
         float horaIni;
         float duracao;
@@ -77,38 +90,44 @@ void GestorDeHorarios::readFiles() {
         string codTurma;
         string temp;
 
-        stringstream inputString(line);
+        stringstream inputString(line3);
 
         getline(inputString, codUC, ',');
-        cout<<"------------"<<endl<<codUC<<endl;
+        cout << "------------" << endl << codUC << endl;
         getline(inputString, codTurma, ',');
-        cout<<codTurma<<endl;
+        cout << codTurma << endl;
         getline(inputString, diaSemana, ',');
-        cout<<diaSemana<<endl;
+        cout << diaSemana << endl;
 
         getline(inputString, temp, ',');
         horaIni = atof(temp.c_str());
+        cout << horaIni << endl;
         getline(inputString, temp, ',');
         duracao = atof(temp.c_str());
+        cout << duracao << endl;
 
         getline(inputString, tipo, ',');
-        cout<<tipo<<endl;
+        cout << tipo << endl << "-----------" << endl;
 
-        UCTurma turma(codUC,codTurma);
-        Bloco bloco(diaSemana,horaIni,duracao,tipo);
+        UCTurma turma(codUC, codTurma);
+        Bloco bloco(diaSemana, horaIni, duracao, tipo);
 
         TurmaHo turmaHo(turma);
 
-        for (TurmaHo &turminha : horarios){
-            if (turmaHo==turminha){
+        for (TurmaHo &turminha: horarios) {
+            if (turmaHo == turminha) {
                 turminha.pushback(bloco);
                 break;
-            }
-            else continue;
+            } else continue;
         }
 
-        line = "";
+        line3 = "";
 
     }
-*/
+}
+
+void GestorDeHorarios::readFiles() {
+    readStudents();
+    readClassesperUc();
+    readClasses();
 }

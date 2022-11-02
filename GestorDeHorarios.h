@@ -16,8 +16,10 @@ class GestorDeHorarios {
     //queue<Pedido> pedidos;
 public:
     GestorDeHorarios();
+    void readStudents();
+    void readClassesperUc();
+    void readClasses();
     void readFiles();
-
 
 };
 
