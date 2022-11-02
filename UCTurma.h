@@ -8,12 +8,14 @@
 
 using namespace std;
 class UCTurma {
-    std::string codUC;
-    std::string codTurma;
+    string codUC;
+    string codTurma;
 public:
+    UCTurma();
     UCTurma(string uc, string turma);
-    string getUC();
-    string getTurma();
+    string getUC() const;
+    string getTurma() const;
+    bool operator== (const UCTurma& turma) const;
 };
 
 

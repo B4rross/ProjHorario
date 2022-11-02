@@ -15,8 +15,15 @@ class Student {
     string nomeEst;
     list<UCTurma> turmas;
 public:
+    Student();
     Student(int codigo, string nome, list<UCTurma> list);
-
+    Student(int codigo, string nome, UCTurma turma);
+    int get_cod() const;
+    string get_nome() const;
+    UCTurma get_turma() const;
+    list<UCTurma> get_turmas() const;
+    bool operator< (const Student& student2) const;
+    void pushback(const Student &student2);
 
 };
 

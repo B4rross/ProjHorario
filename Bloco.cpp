@@ -4,7 +4,7 @@
 
 #include "Bloco.h"
 
-Bloco::Bloco(string dia, int horai, int duracao, string type) {
+Bloco::Bloco(string dia, float horai, float duracao, string type) {
     diaSemana=dia;
     horaIni=horai;
     horaFim=horai + duracao;

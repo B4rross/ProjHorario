@@ -9,10 +9,17 @@ UCTurma::UCTurma(string uc, string turma) {
     codTurma=turma;
 }
 
-string UCTurma::getUC() {
+string UCTurma::getUC() const{
     return codUC;
 }
 
-string UCTurma::getTurma() {
+string UCTurma::getTurma() const{
     return codTurma;
+}
+
+UCTurma::UCTurma() {
+}
+
+bool UCTurma::operator==(const UCTurma &turma) const {
+    return (codUC==turma.getUC() && codTurma==turma.getTurma());
 }

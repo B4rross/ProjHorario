@@ -10,11 +10,11 @@ using namespace std;
 
 class Bloco {
     string diaSemana;
-    int horaIni;
-    int horaFim;
+    float horaIni;
+    float horaFim;
     string tipo;
 public:
-    Bloco(string dia, int horai, int horaf, string t)
+    Bloco(string dia, float horai, float duracao, string t);
 
 };
 

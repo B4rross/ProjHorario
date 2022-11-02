@@ -3,4 +3,4 @@ project(untitled)
 
 set(CMAKE_CXX_STANDARD 14)
 
-add_executable(untitled main.cpp UCTurma.cpp UCTurma.h TurmaHo.cpp TurmaHo.h Bloco.cpp Bloco.h student.cpp student.h)
+add_executable(untitled main.cpp UCTurma.cpp UCTurma.h TurmaHo.cpp TurmaHo.h Bloco.cpp Bloco.h Student.cpp Student.h GestorDeHorarios.cpp GestorDeHorarios.h BST.cpp BST.h)
