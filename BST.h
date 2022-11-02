@@ -29,6 +29,7 @@ public:
     explicit BST(Student student_);
     bool find(const Student& x);
     bool find(const Student& x, Node* &t);
+
     bool insert(const Student& x);
     bool insert(const Student& x, Node* &t);
 };

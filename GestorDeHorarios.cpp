@@ -14,11 +14,8 @@ GestorDeHorarios::GestorDeHorarios(){
 void GestorDeHorarios::readStudents() {
     ifstream inputFile1;
     inputFile1.open(R"(C:\Users\inviz\Downloads\schedule\students_classes.csv)");
-    //inputFile2.open(R"(C:\Users\inviz\Downloads\schedule\classes_per_uc.csv)");
-    //inputFile3.open(R"(C:\Users\inviz\Downloads\schedule\classes.csv)");
     string line1;
     BST arvore;
-    //vector<TurmaHo> turmasHo;
     getline(inputFile1, line1);
     line1 = "";
 
@@ -33,13 +30,13 @@ void GestorDeHorarios::readStudents() {
 
         getline(inputString, temp, ',');
         codEst = atoi(temp.c_str());
-        cout << "------------" << endl << codEst << endl;
+
         getline(inputString, nomeEst, ',');
-        cout << nomeEst << endl;
+
         getline(inputString, codUC, ',');
-        cout << codUC << endl;
+
         getline(inputString, codTurma, ',');
-        cout << codTurma << endl << "------------" << endl;
+
 
 
         UCTurma turma(codUC, codTurma);
@@ -63,9 +60,9 @@ void GestorDeHorarios::readClassesperUc() {
         stringstream inputString(line2);
 
         getline(inputString, codUC, ',');
-        cout<<"------------"<<endl<<codUC<<endl;
+
         getline(inputString, codTurma, ',');
-        cout<<codTurma<<endl;
+
 
         UCTurma turma(codUC,codTurma);
         TurmaHo turmaHo(turma);
@@ -93,21 +90,21 @@ void GestorDeHorarios::readClasses() {
         stringstream inputString(line3);
 
         getline(inputString, codUC, ',');
-        cout << "------------" << endl << codUC << endl;
+
         getline(inputString, codTurma, ',');
-        cout << codTurma << endl;
+
         getline(inputString, diaSemana, ',');
-        cout << diaSemana << endl;
+
 
         getline(inputString, temp, ',');
         horaIni = atof(temp.c_str());
-        cout << horaIni << endl;
+
         getline(inputString, temp, ',');
         duracao = atof(temp.c_str());
-        cout << duracao << endl;
+
 
         getline(inputString, tipo, ',');
-        cout << tipo << endl << "-----------" << endl;
+
 
         UCTurma turma(codUC, codTurma);
         Bloco bloco(diaSemana, horaIni, duracao, tipo);
@@ -131,3 +128,19 @@ void GestorDeHorarios::readFiles() {
     readClassesperUc();
     readClasses();
 }
+
+void GestorDeHorarios::listar_Uc() const{
+    string uc;
+    for(TurmaHo turmaHo : horarios){
+        if(uc==""){
+            uc="a";
+            continue;
+        }
+        else if((turmaHo.get_turma()).getUC()!=uc) {
+            cout << (turmaHo.get_turma()).getUC() << endl;
+            uc=turmaHo.get_turma().getUC();
+        }
+    }
+}
+
+
