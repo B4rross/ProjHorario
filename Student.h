@@ -26,7 +26,7 @@ public:
     void pushback(const Student &student2);
     bool is_in_turma(string turma) const;
     bool is_in_uc(string uc) const;
-
+    bool is_in_ano(char ano) const;
 };
 
 

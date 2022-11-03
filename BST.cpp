@@ -8,19 +8,19 @@
 #include "BST.h"
 
 
-bool BST::find(const Student &x) {
+Student& BST::find(const Student &x) {
     return find(x,root);
 }
 
 
-bool BST::find(const Student &x, BST::Node *&t) {
+Student& BST::find(const Student &x, BST::Node *&t) {
     if ( t == NULL )
         return NULL;
     else if (x < t->student) {
         return find(x, t->left);
     } else if (t->student < x)
         return find(x, t->right);
-    else return t;
+    else return t->student;
 }
 
 bool BST::insert(const Student &x) {
@@ -60,6 +60,20 @@ vector<Student> BST::iterate(bstit it) const{
 vector<Student> BST::iterate() const{
     bstit it(root);
     return iterate(it);
+}
+
+Student &BST::find(string x) {
+    return find(x,root);
+}
+
+Student &BST::find(string x, BST::Node *&t) {
+    if ( t == NULL )
+        throw "Utilizador nao encontrado";
+    else if (x < (t->student).get_nome()) {
+        return find(x, t->left);
+    } else if ((t->student).get_nome() < x)
+        return find(x, t->right);
+    else return t->student;
 }
 /*
 void BST::initStack(BST::Node *&t) {

@@ -56,8 +56,16 @@ bool Student::is_in_turma(string turma) const {
 }
 
 bool Student::is_in_uc(string uc) const {
-    for(UCTurma turma : turmas){
-        if (turma.getUC()==uc) return true;
+    for(UCTurma ucturma : turmas){
+        if (ucturma.getUC()==uc) return true;
+        else continue;
+    }
+    return false;
+}
+
+bool Student::is_in_ano(char ano) const{
+    for(UCTurma ucturma : turmas){
+        if (ucturma.getTurma()[0]==ano) return true;
         else continue;
     }
     return false;

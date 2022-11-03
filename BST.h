@@ -70,17 +70,12 @@ public:
     };
     BST();
     explicit BST(Student student_);
-    bool find(const Student& x);
-    bool find(const Student& x, Node* &t);
+    Student& find(string x) ;
+    Student& find(string x, Node* &t) ;
+    Student& find(const Student& x);
+    Student& find(const Student& x, Node* &t);
     bool insert(const Student& x);
     bool insert(const Student& x, Node* &t);
-    /*
-    //Stack
-    void initStack(Node* &t);
-    Node* curr();
-    void next();
-    bool isEnd();
-     */
     vector<Student> iterate() const;
     vector<Student> iterate(bstit it) const;
 

@@ -9,7 +9,7 @@ int main(){
     h.readFiles();
     do{
         cout<<"Opcao 1: Listar turmas\n";
-        cout<<"Opcao 2: Listar UCs\n";
+        cout<<"Opcao 2: Listar es\n";
         cout<<"Opcao 3: Listar estudantes e horários\n";
         cout<<"Opcao 4: Pedidos de mudança de turmas/UCs de um estudante\n";
         cout<<"Opcao 5: Sair do programa\n";
@@ -55,6 +55,10 @@ int main(){
                     h.listar_Turmas(lambda);
                     cout<<"-------------------------------------------\n";
                 }
+                else if(x!=5){
+                    cout<<"Introduza uma opcao valida\n";
+                    cout<<"-------------------------------------------\n";
+                }
             }
             while(x!=5);
         }
@@ -72,7 +76,7 @@ int main(){
                 switch(y){
 
                     case 1:
-                        h.listar_alunos();
+                        //h.listar_alunosUc();
                         cout<<"-------------------------------------------\n";
                         break;
 
@@ -84,6 +88,7 @@ int main(){
                         cout<<"Aqui devemos chamar fun��o listar_estudantes_maisdenUCs()\n";
                         cout<<"-------------------------------------------\n";
                         break;
+
                     default:
                         cout<<"Introduza uma opcao valida\n";
                         cout<<"-------------------------------------------\n";
@@ -94,32 +99,51 @@ int main(){
         else if(n==3){
             int z;
             do{
-                cout<<"Opcao 1: Listar os dados de todos os estudantes\n";
-                cout<<"Opcao 2: Listar os dados dos estudantes selecionados pelo utilizador\n";
-                cout<<"Opcao 3: Listar todas as UCs de um estudante(horario)\n";
-                cout<<"Opcao 4: Sair dos estudantes\n";
+                cout<<"Opcao 1: Listar estudantes em determinada UC\n";
+                cout<<"Opcao 2: Listar estudantes em determinada Turma\n";
+                cout<<"Opcao 3: Listar estudantes em determinado Ano\n";
+                cout<<"Opcao 4: Horario do estudante desejado\n";
+                cout<<"Opcao 5: Sair dos estudantes\n";
                 cout<<"Insira a sua opcao: ";
                 cin>>z;
                 system("cls");
-                switch(z){
-                    case 1:
-                        cout<<"Aqui devemos chamar fun��o listar_estudantes()\n";
-                        cout<<"-------------------------------------------\n";
-                        break;
-                    case 2:
-                        cout<<"Aqui devemos chamar fun��o listar_estudantes_selecionados()\n";
-                        cout<<"-------------------------------------------\n";
-                        break;
-                    case 3:
-                        cout<<"Aqui devemos chamar fun��o listar_UCs_estudante()\n";
-                        cout<<"-------------------------------------------\n";
-                        break;
-                    default:
-                        cout<<"Introduza uma opcao valida\n";
-                        cout<<"-------------------------------------------\n";
+
+                if(z==1) {
+                    cout<<"Introduza UC desejada:";
+                    string uc;
+                    cin>>uc;
+                    h.listar_alunosUc(uc);
+
+                    cout << "-------------------------------------------\n";
+
+                }
+                else if(z==2) {
+                    cout<<"Introduza Turma desejada:";
+                    string turma;
+                    cin>>turma;
+                    h.listar_alunosTurma(turma);
+                    cout << "-------------------------------------------\n";
+                }
+                else if(z==3) {
+                    cout<<"Introduza ano desejado:";
+                    char ano;
+                    cin>>ano;
+                    h.listar_alunosAno(ano);
+                    cout << "-------------------------------------------\n";
+                }
+                else if(z==4){
+                    cout<<"Introduza o nome do Aluno desejado:";
+                    string aluno;
+                    cin>>aluno;
+                    h.listar_horario(aluno);
+                    cout << "-------------------------------------------\n";
+                }
+                else if(z!=5){
+                    cout<<"Introduza uma opcao valida\n";
+                    cout<<"-------------------------------------------\n";
                 }
             }
-            while(z!=4);
+            while(z!=5);
         }
         else if(n==4){
             cout<<"Aqui devemos chamar fun��o pedidos()\n";

@@ -22,9 +22,10 @@ public:
     void readClasses();
     void readFiles();
     void listar_Turmas(const function<bool(TurmaHo,TurmaHo)>& func) const;
-    void listar_alunos() const;
-
-
+    void listar_alunosTurma(string Turma) const;
+    void listar_alunosUc(string uc) const;
+    void listar_alunosAno(char ano) const;
+    void listar_horario(string aluno) ;
 };
 
 

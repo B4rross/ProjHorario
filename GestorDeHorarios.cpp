@@ -143,13 +143,42 @@ void GestorDeHorarios::listar_Turmas(const function<bool(TurmaHo,TurmaHo)>& func
     }
 }
 
-void GestorDeHorarios::listar_alunos() const{
+void GestorDeHorarios::listar_alunosUc(string uc) const{
     vector<Student> temp = students.iterate();
-
+    cout<<"Alunos inscritos na cadeira:"<<uc<<endl;
     for (Student& student : temp){
-        cout<<student.get_nome()<<'|';
+        if (student.is_in_uc(uc)){
+            cout<<student.get_nome()<<endl;
+        }
     }
+}
 
+void GestorDeHorarios::listar_alunosTurma(string turma) const{
+    vector<Student> temp = students.iterate();
+    cout<<"Alunos inscritos na turma:"<<turma<<endl;
+    for (Student& student : temp){
+        if (student.is_in_turma(turma)){
+            cout<<student.get_nome()<<endl;
+        }
+    }
+}
+
+void GestorDeHorarios::listar_alunosAno(char ano) const{
+    vector<Student> temp = students.iterate();
+    cout<<"Alunos inscritos no "<<ano<<"º ano:"<<endl;
+    for (Student& student : temp){
+        if (student.is_in_ano(ano)){
+            cout<<student.get_nome()<<endl;
+        }
+    }
+}
+
+void GestorDeHorarios::listar_horario(string aluno) {
+    Student student = students.find(aluno);
+    vector<vector<Bloco>> blocos (5);
+    for (UCTurma ucTurma : student.get_turmas()){
+        
+    }
 
 }
 
