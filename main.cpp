@@ -7,12 +7,11 @@ int main(){
     int n;
     GestorDeHorarios h;
     h.readFiles();
-    //Aqui devemos chamar a fun��o enviar_dados() que envia os dados dos ficheiros para as estruturas\n;
     do{
         cout<<"Opcao 1: Listar turmas\n";
         cout<<"Opcao 2: Listar UCs\n";
-        cout<<"Opcao 3: Listar estudantes\n";
-        cout<<"Opcao 4: Pedidos de mudanca de turmas/UCs de um estudante(horario)\n";
+        cout<<"Opcao 3: Listar estudantes e horários\n";
+        cout<<"Opcao 4: Pedidos de mudança de turmas/UCs de um estudante\n";
         cout<<"Opcao 5: Sair do programa\n";
         cout<<"Insira a sua opcao: ";
         cin>>n;
@@ -20,32 +19,44 @@ int main(){
         if(n==1){
             int x;
             do{
-                cout<<"Opcao 1: Listar todas as turmas\n";
-                cout<<"Opcao 2: Listar as turmas selecionadas pelo utilizador\n";
-                cout<<"Opcao 3: Listar o total de alunos por turma/ano\n";
-                cout<<"Opcao 4: Sair das turmas\n";
+                cout<<"Opcao 1: Listar todas as turmas por ordem crecente\n";
+                cout<<"Opcao 2: Listar todas as turmas por ordem decrecente\n";
+                cout<<"Opcao 3: Listar todas as turmas por ordem crecente de UC\n";
+                cout<<"Opcao 4: Listar todas as turmas por ordem decrecente de UC\n";
+                cout<<"Opcao 5: Sair das turmas\n";
                 cout<<"Insira a sua opcao: ";
                 cin>>x;
-                system("cls");
-                switch(x){
-                    case 1:
 
-                        cout<<"-------------------------------------------\n";
-                        break;
-                    case 2:
-                        cout<<"Aqui devemos chamar fun��o listar_turmas_selecionadas()\n";
-                        cout<<"-------------------------------------------\n";
-                        break;
-                    case 3:
-                        cout<<"Aqui devemos chamar fun��o listar_alunos_turma()\n";
-                        cout<<"-------------------------------------------\n";
-                        break;
-                    default:
-                        cout<<"Introduza uma opcao valida\n";
-                        cout<<"-------------------------------------------\n";
+                if(x==1) {
+                    auto lambda = [](TurmaHo a,TurmaHo b){
+                        return ((a.get_turma()).getTurma() < (b.get_turma()).getTurma());
+                    };
+                    h.listar_Turmas(lambda);
+                    cout << "-------------------------------------------\n";
+                }
+                else if (x==2) {
+                    auto lambda = [](TurmaHo a,TurmaHo b){
+                        return ((a.get_turma()).getTurma() > (b.get_turma()).getTurma());
+                    };
+                    h.listar_Turmas(lambda);
+                    cout << "-------------------------------------------\n";
+                }
+                else if (x==3) {
+                    auto lambda = [](TurmaHo a,TurmaHo b){
+                        return ((a.get_turma()).getUC() < (b.get_turma()).getUC());
+                    };
+                    h.listar_Turmas(lambda);
+                    cout << "-------------------------------------------\n";
+                }
+                else if (x==4) {
+                    auto lambda = [](TurmaHo a,TurmaHo b){
+                        return ((a.get_turma()).getUC() > (b.get_turma()).getUC());
+                    };
+                    h.listar_Turmas(lambda);
+                    cout<<"-------------------------------------------\n";
                 }
             }
-            while(x!=4);
+            while(x!=5);
         }
         else if(n==2){
             int y;
@@ -61,7 +72,7 @@ int main(){
                 switch(y){
 
                     case 1:
-                        h.listar_Uc();
+                        h.listar_alunos();
                         cout<<"-------------------------------------------\n";
                         break;
 

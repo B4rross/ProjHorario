@@ -29,6 +29,10 @@ bool TurmaHo::operator==(const TurmaHo &turma2) const {
     return ucturma==turma2.get_turma();
 }
 
+bool TurmaHo::operator<(const TurmaHo &turma2) const {
+    return ucturma<turma2.get_turma();
+}
+
 UCTurma TurmaHo::get_turma() const{
     return ucturma;
 }

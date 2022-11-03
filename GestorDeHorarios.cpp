@@ -5,6 +5,7 @@
 #include <fstream>
 #include <sstream>
 #include <iostream>
+#include <algorithm>
 #include "GestorDeHorarios.h"
 
 GestorDeHorarios::GestorDeHorarios(){
@@ -15,7 +16,7 @@ void GestorDeHorarios::readStudents() {
     ifstream inputFile1;
     inputFile1.open(R"(C:\Users\inviz\Downloads\schedule\students_classes.csv)");
     string line1;
-    BST arvore;
+
     getline(inputFile1, line1);
     line1 = "";
 
@@ -42,7 +43,7 @@ void GestorDeHorarios::readStudents() {
         UCTurma turma(codUC, codTurma);
 
         Student estudante(codEst, nomeEst, turma);
-        arvore.insert(estudante);
+        students.insert(estudante);
         line1 = "";
 
     }
@@ -50,8 +51,10 @@ void GestorDeHorarios::readStudents() {
 void GestorDeHorarios::readClassesperUc() {
     ifstream inputFile1;
     inputFile1.open(R"(C:\Users\inviz\Downloads\schedule\classes_per_uc.csv)");
+    string line2;
+    getline(inputFile1, line2);
+    line2 = "";
 
-    string line2="";
     while (getline(inputFile1, line2)) {
         string codUC;
         string codTurma;
@@ -76,8 +79,9 @@ void GestorDeHorarios::readClasses() {
     ifstream inputFile1;
     inputFile1.open(R"(C:\Users\inviz\Downloads\schedule\classes.csv)");
 
-    string line3 = "";
-
+    string line3;
+    getline(inputFile1, line3);
+    line3 = "";
     while (getline(inputFile1, line3)) {
         string diaSemana;
         float horaIni;
@@ -106,7 +110,7 @@ void GestorDeHorarios::readClasses() {
         getline(inputString, tipo, ',');
 
 
-        UCTurma turma(codUC, codTurma);
+        UCTurma turma(codTurma, codUC);
         Bloco bloco(diaSemana, horaIni, duracao, tipo);
 
         TurmaHo turmaHo(turma);
@@ -129,18 +133,25 @@ void GestorDeHorarios::readFiles() {
     readClasses();
 }
 
-void GestorDeHorarios::listar_Uc() const{
-    string uc;
-    for(TurmaHo turmaHo : horarios){
-        if(uc==""){
-            uc="a";
-            continue;
-        }
-        else if((turmaHo.get_turma()).getUC()!=uc) {
-            cout << (turmaHo.get_turma()).getUC() << endl;
-            uc=turmaHo.get_turma().getUC();
-        }
+void GestorDeHorarios::listar_Turmas(const function<bool(TurmaHo,TurmaHo)>& func) const{
+    vector<TurmaHo> temp = horarios;
+    sort(temp.begin(),temp.end(),func);
+    for (TurmaHo turma : temp){
+        cout<<"----------------"<<endl;
+        cout<<"Uc:"<<(turma.get_turma().getUC())<<endl;
+        cout<<"Turma:"<<(turma.get_turma().getTurma())<<endl;
     }
 }
+
+void GestorDeHorarios::listar_alunos() const{
+    vector<Student> temp = students.iterate();
+
+    for (Student& student : temp){
+        cout<<student.get_nome()<<'|';
+    }
+
+
+}
+
 
 

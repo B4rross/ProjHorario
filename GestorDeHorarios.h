@@ -7,6 +7,7 @@
 
 
 #include <vector>
+#include <functional>
 #include "BST.h"
 #include "TurmaHo.h"
 
@@ -20,7 +21,9 @@ public:
     void readClassesperUc();
     void readClasses();
     void readFiles();
-    void listar_Uc() const;
+    void listar_Turmas(const function<bool(TurmaHo,TurmaHo)>& func) const;
+    void listar_alunos() const;
+
 
 };
 

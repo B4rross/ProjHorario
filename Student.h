@@ -11,19 +11,21 @@
 
 using namespace std;
 class Student {
-    int codEst;
+    long codEst;
     string nomeEst;
     list<UCTurma> turmas;
 public:
     Student();
     Student(int codigo, string nome, list<UCTurma> list);
     Student(int codigo, string nome, UCTurma turma);
-    int get_cod() const;
+    long get_cod() const;
     string get_nome() const;
     UCTurma get_turma() const;
     list<UCTurma> get_turmas() const;
     bool operator< (const Student& student2) const;
     void pushback(const Student &student2);
+    bool is_in_turma(string turma) const;
+    bool is_in_uc(string uc) const;
 
 };
 

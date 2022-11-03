@@ -20,7 +20,7 @@ Student::Student(int codigo, string nome, UCTurma turma) {
     turmas.push_back(turma);
 }
 bool Student::operator<(const Student &student2) const{
-    return (codEst < student2.codEst);
+    return (nomeEst < student2.get_nome());
 }
 
 
@@ -29,12 +29,14 @@ void Student::pushback(const Student &student2) {
     turmas.push_back(student2.get_turma());
 }
 
-int Student::get_cod() const{
-    return codEst;
-}
+
 
 string Student::get_nome() const{
     return nomeEst;
+}
+
+long Student::get_cod() const{
+    return codEst;
 }
 
 UCTurma Student::get_turma() const{
@@ -45,6 +47,21 @@ list<UCTurma> Student::get_turmas() const{
     return list<UCTurma>();
 }
 
+bool Student::is_in_turma(string turma) const {
+    for(UCTurma ucturma : turmas){
+        if (ucturma.getTurma()==turma) return true;
+        else continue;
+    }
+    return false;
+}
+
+bool Student::is_in_uc(string uc) const {
+    for(UCTurma turma : turmas){
+        if (turma.getUC()==uc) return true;
+        else continue;
+    }
+    return false;
+}
 
 
 

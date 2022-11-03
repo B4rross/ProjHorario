@@ -23,3 +23,6 @@ UCTurma::UCTurma() {
 bool UCTurma::operator==(const UCTurma &turma) const {
     return (codUC==turma.getUC() && codTurma==turma.getTurma());
 }
+bool UCTurma::operator<(const UCTurma &turma) const {
+    return (codTurma<turma.getTurma());
+}

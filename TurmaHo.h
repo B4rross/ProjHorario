@@ -20,6 +20,7 @@ public:
     UCTurma get_turma() const;
     void pushback(Bloco bloco);
     bool operator== (const TurmaHo& turma2) const;
+    bool operator< (const TurmaHo& turma2) const;
 };
 
 

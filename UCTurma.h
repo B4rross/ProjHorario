@@ -16,6 +16,7 @@ public:
     string getUC() const;
     string getTurma() const;
     bool operator== (const UCTurma& turma) const;
+    bool operator< (const UCTurma& turma) const;
 };
 
 
