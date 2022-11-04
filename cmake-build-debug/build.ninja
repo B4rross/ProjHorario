@@ -91,6 +91,12 @@ build CMakeFiles/untitled.dir/BST.cpp.obj: CXX_COMPILER__untitled_Debug C$:/User
   OBJECT_DIR = CMakeFiles\untitled.dir
   OBJECT_FILE_DIR = CMakeFiles\untitled.dir
 
+build CMakeFiles/untitled.dir/Pedido.cpp.obj: CXX_COMPILER__untitled_Debug C$:/Users/inviz/CLionProjects/untitled/Pedido.cpp || cmake_object_order_depends_target_untitled
+  DEP_FILE = CMakeFiles\untitled.dir\Pedido.cpp.obj.d
+  FLAGS = -g -std=gnu++14
+  OBJECT_DIR = CMakeFiles\untitled.dir
+  OBJECT_FILE_DIR = CMakeFiles\untitled.dir
+
 
 # =============================================================================
 # Link build statements for EXECUTABLE target untitled
@@ -99,7 +105,7 @@ build CMakeFiles/untitled.dir/BST.cpp.obj: CXX_COMPILER__untitled_Debug C$:/User
 #############################################
 # Link the executable untitled.exe
 
-build untitled.exe: CXX_EXECUTABLE_LINKER__untitled_Debug CMakeFiles/untitled.dir/main.cpp.obj CMakeFiles/untitled.dir/UCTurma.cpp.obj CMakeFiles/untitled.dir/TurmaHo.cpp.obj CMakeFiles/untitled.dir/Bloco.cpp.obj CMakeFiles/untitled.dir/Student.cpp.obj CMakeFiles/untitled.dir/GestorDeHorarios.cpp.obj CMakeFiles/untitled.dir/BST.cpp.obj
+build untitled.exe: CXX_EXECUTABLE_LINKER__untitled_Debug CMakeFiles/untitled.dir/main.cpp.obj CMakeFiles/untitled.dir/UCTurma.cpp.obj CMakeFiles/untitled.dir/TurmaHo.cpp.obj CMakeFiles/untitled.dir/Bloco.cpp.obj CMakeFiles/untitled.dir/Student.cpp.obj CMakeFiles/untitled.dir/GestorDeHorarios.cpp.obj CMakeFiles/untitled.dir/BST.cpp.obj CMakeFiles/untitled.dir/Pedido.cpp.obj
   FLAGS = -g
   LINK_LIBRARIES = -lkernel32 -luser32 -lgdi32 -lwinspool -lshell32 -lole32 -loleaut32 -luuid -lcomdlg32 -ladvapi32
   OBJECT_DIR = CMakeFiles\untitled.dir

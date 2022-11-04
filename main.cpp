@@ -9,10 +9,9 @@ int main(){
     h.readFiles();
     do{
         cout<<"Opcao 1: Listar turmas\n";
-        cout<<"Opcao 2: Listar es\n";
-        cout<<"Opcao 3: Listar estudantes e horários\n";
-        cout<<"Opcao 4: Pedidos de mudança de turmas/UCs de um estudante\n";
-        cout<<"Opcao 5: Sair do programa\n";
+        cout<<"Opcao 2: Listar estudantes e horários\n";
+        cout<<"Opcao 3: Pedidos de mudança de turmas/UCs de um estudante\n";
+        cout<<"Opcao 4: Sair do programa\n";
         cout<<"Insira a sua opcao: ";
         cin>>n;
 
@@ -62,48 +61,16 @@ int main(){
             }
             while(x!=5);
         }
+
         else if(n==2){
-            int y;
-            do{
-                cout<<"Opcao 1: Listar todas as UCs\n";
-                cout<<"Opcao 2: Listar o total de alunos por UC\n";
-                cout<<"Opcao 3: Listar os estudantes com mais de n UCs\n";
-                cout<<"Opcao 4: Sair das UCs\n";
-                cout<<"Insira a sua opcao: ";
-                cin>>y;
-
-                string uc;
-                switch(y){
-
-                    case 1:
-                        //h.listar_alunosUc();
-                        cout<<"-------------------------------------------\n";
-                        break;
-
-                    case 2:
-                        cout<<"Aqui devemos chamar fun��o listar_alunos_UC()\n";
-                        cout<<"-------------------------------------------\n";
-                        break;
-                    case 3:
-                        cout<<"Aqui devemos chamar fun��o listar_estudantes_maisdenUCs()\n";
-                        cout<<"-------------------------------------------\n";
-                        break;
-
-                    default:
-                        cout<<"Introduza uma opcao valida\n";
-                        cout<<"-------------------------------------------\n";
-                }
-            }
-            while(y!=4);
-        }
-        else if(n==3){
             int z;
             do{
                 cout<<"Opcao 1: Listar estudantes em determinada UC\n";
                 cout<<"Opcao 2: Listar estudantes em determinada Turma\n";
                 cout<<"Opcao 3: Listar estudantes em determinado Ano\n";
-                cout<<"Opcao 4: Horario do estudante desejado\n";
-                cout<<"Opcao 5: Sair dos estudantes\n";
+                cout<<"Opcao 4: Listar estudantes em mais de n UC's\n";
+                cout<<"Opcao 5: Horario do estudante desejado\n";
+                cout<<"Opcao 6: Sair dos estudantes\n";
                 cout<<"Insira a sua opcao: ";
                 cin>>z;
                 system("cls");
@@ -132,31 +99,36 @@ int main(){
                     cout << "-------------------------------------------\n";
                 }
                 else if(z==4){
+                    cout<<"Introduza o valor de n desejado:";
+                    int n;
+                    cin>>n;
+                    h.listar_alunos_nmrUC(n);
+                    cout << "-------------------------------------------\n";
+                }
+                else if(z==5){
                     cout<<"Introduza o nome do Aluno desejado:";
                     string aluno;
                     cin>>aluno;
                     h.listar_horario(aluno);
                     cout << "-------------------------------------------\n";
                 }
-                else if(z!=5){
+
+                else if(z!=6){
                     cout<<"Introduza uma opcao valida\n";
                     cout<<"-------------------------------------------\n";
                 }
             }
-            while(z!=5);
+            while(z!=6);
         }
-        else if(n==4){
+        else if(n==3){
             cout<<"Aqui devemos chamar fun��o pedidos()\n";
             cout<<"-------------------------------------------\n";
         }
-        else if(n==5){
-            //Aqui devemos chamar fun��o guardar_dados() que guarda os dados das estruturas nos ficheiros\n;
-        }
-        else{
+        else if(n!=4){
             cout<<"Introduza uma opcao valida\n";
             cout<<"-------------------------------------------\n";
         }
     }
-    while(n!=5);
+    while(n!=4);
 }
 

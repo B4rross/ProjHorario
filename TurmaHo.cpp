@@ -36,3 +36,7 @@ bool TurmaHo::operator<(const TurmaHo &turma2) const {
 UCTurma TurmaHo::get_turma() const{
     return ucturma;
 }
+
+list<Bloco> TurmaHo::get_bloco() const{
+    return ucTurmaBloco;
+}

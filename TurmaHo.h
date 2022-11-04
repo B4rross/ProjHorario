@@ -18,6 +18,7 @@ public:
     TurmaHo(UCTurma turma);
     TurmaHo(UCTurma turma, Bloco bloco);
     UCTurma get_turma() const;
+    list<Bloco> get_bloco() const;
     void pushback(Bloco bloco);
     bool operator== (const TurmaHo& turma2) const;
     bool operator< (const TurmaHo& turma2) const;

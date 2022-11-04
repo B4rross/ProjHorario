@@ -15,7 +15,7 @@ Student& BST::find(const Student &x) {
 
 Student& BST::find(const Student &x, BST::Node *&t) {
     if ( t == NULL )
-        return NULL;
+        throw "Utilizador nao encontrado";
     else if (x < t->student) {
         return find(x, t->left);
     } else if (t->student < x)
@@ -38,6 +38,7 @@ bool BST::insert(const Student &x, BST::Node *&t) {
         return insert(x, t->right);
     else{
         t->student.pushback(x);
+        t->student.inc_uc();
         return true;
     }
 }

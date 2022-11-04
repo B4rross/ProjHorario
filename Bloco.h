@@ -10,11 +10,19 @@ using namespace std;
 
 class Bloco {
     string diaSemana;
+    string uc;
     float horaIni;
     float horaFim;
     string tipo;
 public:
-    Bloco(string dia, float horai, float duracao, string t);
+    Bloco(string dia, float horai, float duracao, string t, string ucc);
+    string get_dia() const;
+    string get_uc() const;
+    string get_tipo() const;
+    float get_horaI() const;
+    float get_horaF() const;
+
+    bool operator< (const Bloco& student2) const;
 
 };
 

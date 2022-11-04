@@ -2,15 +2,18 @@
 // Created by inviz on 30/10/2022.
 //
 
+#include <algorithm>
 #include "Student.h"
 
 Student::Student() {
+    uccounter=0;
 }
 
 Student::Student(int codigo, string nome, list<UCTurma> list) {
     codEst=codigo;
     nomeEst=nome;
     turmas=list;
+    uccounter=0;
 }
 
 Student::Student(int codigo, string nome, UCTurma turma) {
@@ -18,6 +21,7 @@ Student::Student(int codigo, string nome, UCTurma turma) {
     nomeEst=nome;
     turmas.clear();
     turmas.push_back(turma);
+    uccounter=0;
 }
 bool Student::operator<(const Student &student2) const{
     return (nomeEst < student2.get_nome());
@@ -44,7 +48,7 @@ UCTurma Student::get_turma() const{
 }
 
 list<UCTurma> Student::get_turmas() const{
-    return list<UCTurma>();
+    return turmas;
 }
 
 bool Student::is_in_turma(string turma) const {
@@ -69,6 +73,18 @@ bool Student::is_in_ano(char ano) const{
         else continue;
     }
     return false;
+}
+
+void Student::inc_uc() {
+    uccounter++;
+}
+
+int Student::get_nmr_uc() const {
+    return uccounter;
+}
+
+void Student::remove_turma(const UCTurma &turma2) {
+    turmas.erase(find(turmas.begin(),turmas.end(),turma2));
 }
 
 
