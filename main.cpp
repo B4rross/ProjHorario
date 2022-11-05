@@ -9,8 +9,8 @@ int main(){
     h.readFiles();
     do{
         cout<<"Opcao 1: Listar turmas\n";
-        cout<<"Opcao 2: Listar estudantes e horários\n";
-        cout<<"Opcao 3: Pedidos de mudança de turmas/UCs de um estudante\n";
+        cout<<"Opcao 2: Listar estudantes e horarios\n";
+        cout<<"Opcao 3: Pedidos de mudanca de turmas/UCs de um estudante\n";
         cout<<"Opcao 4: Sair do programa\n";
         cout<<"Insira a sua opcao: ";
         cin>>n;
@@ -73,7 +73,7 @@ int main(){
                 cout<<"Opcao 6: Sair dos estudantes\n";
                 cout<<"Insira a sua opcao: ";
                 cin>>z;
-                system("cls");
+
 
                 if(z==1) {
                     cout<<"Introduza UC desejada:";
@@ -121,8 +121,23 @@ int main(){
             while(z!=6);
         }
         else if(n==3){
-            cout<<"Aqui devemos chamar fun��o pedidos()\n";
-            cout<<"-------------------------------------------\n";
+            int z;
+            do {
+                cout << "Opcao 1: Adicionar pedido\n";
+                cout << "Opcao 2: Processar pedidos\n";
+                cout << "Opcao 3: Sair dos pedidos\n";
+                cout << "Insira a sua opcao: ";
+                cin >> z;
+                cout << "-------------------------------------------\n";
+                if(z==1){
+                    h.inserir_pedido();
+
+                }
+                else if(z==2) {
+                    h.processarPedidos();
+                    cout << "-------------------------------------------\n";
+                }
+            }while(z!=3);
         }
         else if(n!=4){
             cout<<"Introduza uma opcao valida\n";

@@ -38,7 +38,6 @@ bool BST::insert(const Student &x, BST::Node *&t) {
         return insert(x, t->right);
     else{
         t->student.pushback(x);
-        t->student.inc_uc();
         return true;
     }
 }
@@ -76,35 +75,3 @@ Student &BST::find(string x, BST::Node *&t) {
         return find(x, t->right);
     else return t->student;
 }
-/*
-void BST::initStack(BST::Node *&t) {
-    Node* curr = root;
-    while (curr != NULL)
-        stak.push(curr), curr = curr->left;
-}
-
-BST::Node* BST::curr(){
-    return stak.top();
-}
-
-void BST::next() {
-        Node* curr = stak.top()->right;
-        stak.pop();
-        while (curr != NULL)
-            stak.push(curr), curr = curr->left;
-}
-
-bool BST::isEnd() {
-        return !(stak.size());
-}
-
-void BST::iterate() {
-        while (!this->isEnd())
-            cout << (this->curr()->student).get_nome() << " ", this->next();
-}
-
-*/
-
-
-
-

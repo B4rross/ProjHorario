@@ -41,10 +41,6 @@ string Pedido::get_tipo() const {
     return tipo;
 }
 
-void Pedido::operator=(Pedido &pedido) {
-    aluno=pedido.get_nome();
-    uc=pedido.get_uc();
-    turmaAtual=pedido.get_turmaA();
-    turmaDesejada=pedido.get_turmaD();
-    tipo=pedido.get_tipo();
+Pedido& Pedido::operator=(Pedido &pedido) {
+    return pedido;
 }

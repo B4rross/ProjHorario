@@ -13,7 +13,7 @@ Student::Student(int codigo, string nome, list<UCTurma> list) {
     codEst=codigo;
     nomeEst=nome;
     turmas=list;
-    uccounter=0;
+    uccounter=list.size();
 }
 
 Student::Student(int codigo, string nome, UCTurma turma) {
@@ -21,7 +21,7 @@ Student::Student(int codigo, string nome, UCTurma turma) {
     nomeEst=nome;
     turmas.clear();
     turmas.push_back(turma);
-    uccounter=0;
+    uccounter=1;
 }
 bool Student::operator<(const Student &student2) const{
     return (nomeEst < student2.get_nome());
@@ -31,6 +31,7 @@ bool Student::operator<(const Student &student2) const{
 
 void Student::pushback(const Student &student2) {
     turmas.push_back(student2.get_turma());
+    uccounter++;
 }
 
 
@@ -75,9 +76,6 @@ bool Student::is_in_ano(char ano) const{
     return false;
 }
 
-void Student::inc_uc() {
-    uccounter++;
-}
 
 int Student::get_nmr_uc() const {
     return uccounter;
@@ -85,6 +83,10 @@ int Student::get_nmr_uc() const {
 
 void Student::remove_turma(const UCTurma &turma2) {
     turmas.erase(find(turmas.begin(),turmas.end(),turma2));
+}
+
+void Student::add_turma(const UCTurma &turma2) {
+    turmas.push_back(turma2);
 }
 
 

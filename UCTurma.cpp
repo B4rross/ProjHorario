@@ -26,3 +26,7 @@ bool UCTurma::operator==(const UCTurma &turma) const {
 bool UCTurma::operator<(const UCTurma &turma) const {
     return (codTurma<turma.getTurma());
 }
+
+string UCTurma::getBoth() const {
+    return codUC+"/"+codTurma;
+}

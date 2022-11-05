@@ -17,7 +17,7 @@ public:
     Pedido();
     Pedido(string aluno_, string uc_, string tA, string tD, string a);
     Pedido(string aluno_, string uc_, string tA, string a);
-    void operator=(Pedido& pedido);
+    Pedido& operator=(Pedido& pedido);
     string get_nome() const;
     string get_uc() const;
     string get_turmaA() const;

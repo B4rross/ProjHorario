@@ -25,9 +25,9 @@ public:
     list<UCTurma> get_turmas() const;
     int get_nmr_uc() const;
     bool operator< (const Student& student2) const;
-    void inc_uc();
     void pushback(const Student &student2);
     void remove_turma(const UCTurma &turma2);
+    void add_turma(const UCTurma &turma2);
     bool is_in_turma(string turma) const;
     bool is_in_uc(string uc) const;
     bool is_in_ano(char ano) const;

@@ -15,6 +15,7 @@ public:
     UCTurma(string uc, string turma);
     string getUC() const;
     string getTurma() const;
+    string getBoth() const;
     bool operator== (const UCTurma& turma) const;
 
     bool operator< (const UCTurma& turma) const;
