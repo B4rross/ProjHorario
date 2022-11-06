@@ -39,6 +39,8 @@ public:
     bool contains(list<Pedido> lista, UCTurma& turma);
 
     void inserir_pedido();
+
+    bool contains(list<UCTurma> lista, UCTurma &turma);
 };
 
 

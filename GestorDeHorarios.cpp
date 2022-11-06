@@ -15,7 +15,7 @@ GestorDeHorarios::GestorDeHorarios(){
 
 void GestorDeHorarios::readStudents() {
     ifstream inputFile1;
-    inputFile1.open(R"(C:\Users\inviz\CLionProjects\untitled\students_classes.csv)");
+    inputFile1.open(R"(..\schedule\students_classes.csv)");
     string line1;
 
     getline(inputFile1, line1);
@@ -60,7 +60,7 @@ void GestorDeHorarios::readStudents() {
 }
 void GestorDeHorarios::readClassesperUc() {
     ifstream inputFile1;
-    inputFile1.open(R"(C:\Users\inviz\Downloads\schedule\classes_per_uc.csv)");
+    inputFile1.open(R"(..\schedule\classes_per_uc.csv)");
     string line2;
     getline(inputFile1, line2);
     line2 = "";
@@ -87,7 +87,7 @@ void GestorDeHorarios::readClassesperUc() {
 }
 void GestorDeHorarios::readClasses() {
     ifstream inputFile1;
-    inputFile1.open(R"(C:\Users\inviz\Downloads\schedule\classes.csv)");
+    inputFile1.open(R"(..\schedule\classes.csv)");
 
     string line3;
     getline(inputFile1, line3);
@@ -138,7 +138,7 @@ void GestorDeHorarios::readClasses() {
 }
 void GestorDeHorarios::readPedidos() {
     ifstream inputFile1;
-    inputFile1.open(R"(C:\Users\inviz\CLionProjects\untitled\turmas pedidos.csv)");
+    inputFile1.open(R"(..\schedule\turmas pedidos.csv)");
     string line2;
     getline(inputFile1, line2,'\n');
     line2 = "";
@@ -301,7 +301,9 @@ void GestorDeHorarios::processarPedidos() {
             pedidos.pop();
         } else if (pedido.get_tipo() == "r") {
             UCTurma turma(pedido.get_uc(), pedido.get_turmaA());
-            (students.find(pedido.get_nome())).remove_turma(turma);
+            if (contains(student.get_turmas(),turma)) {
+                (students.find(pedido.get_nome())).remove_turma(turma);
+            }
             pedidos.pop();
         } else if (pedido.get_tipo() == "s") {
             list<Pedido> requests;
@@ -399,10 +401,20 @@ void GestorDeHorarios::swap(Student &student, list<Pedido> requests) {
         }
     }
     for(Pedido& pedido : requests) {
+        UCTurma ucturmaA(pedido.get_uc(),pedido.get_turmaA());
+        if (!contains(student.get_turmas(),ucturmaA)) break;
         int max = 0;
         int min = 0;
+        bool flag=true;
         string dia;
         UCTurma ucturmaD(pedido.get_uc(),pedido.get_turmaD());
+        if (ocuTurmas[ucturmaD.getBoth()]+1>25) flag=false;
+        for (TurmaHo turmaHo : horarios){
+            if ((turmaHo.get_turma()).getUC()==ucturmaD.getUC()){
+                if (ocuTurmas[(turmaHo.get_turma()).getBoth()]-ocuTurmas[ucturmaD.getBoth()]>2 || ocuTurmas[ucturmaD.getBoth()]-ocuTurmas[(turmaHo.get_turma()).getBoth()]>2) flag=false;
+            }
+        }
+
         for (TurmaHo turmaHo: horarios) {
             if (ucturmaD == turmaHo.get_turma()) {
                 for (Bloco bloco: turmaHo.get_bloco()) {
@@ -416,20 +428,18 @@ void GestorDeHorarios::swap(Student &student, list<Pedido> requests) {
                 break;
             }
         }
-        bool flag=true;
+
         for (Bloco bloco: horario[map1[dia]]) {
             if ((min > bloco.get_horaI() && min < bloco.get_horaF()) ||
                 (max > bloco.get_horaI() && max < bloco.get_horaF()) && (bloco.get_tipo() == "TP" || bloco.get_tipo() == "PL"))
                 flag=false;
                 break;
         }
-        if(flag) {
+        if(flag)  {
             Bloco bloco(dia,min,max,"TP","","");
             horario[map1[dia]].push_back(bloco);
-            UCTurma ucturmaA(pedido.get_uc(),pedido.get_turmaA());
             student.remove_turma(ucturmaA);
             student.add_turma(ucturmaD);
-
         }
     }
 }
@@ -437,6 +447,12 @@ void GestorDeHorarios::swap(Student &student, list<Pedido> requests) {
 bool GestorDeHorarios::contains(list<Pedido> lista, UCTurma& turma){
     for(const Pedido& pedido : lista){
         UCTurma ucturma(pedido.get_uc(),pedido.get_turmaA());
+        if(ucturma==turma) return true;
+    }
+    return false;
+}
+bool GestorDeHorarios::contains(list<UCTurma> lista, UCTurma& turma){
+    for(const UCTurma& ucturma : lista){
         if(ucturma==turma) return true;
     }
     return false;
